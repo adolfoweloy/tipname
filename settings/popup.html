@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        width: 30em
+      }
+      .description {
+        padding: 1em;
+        background-color: antiquewhite;
+      }
+      .status {
+        color: green;
+        font-weight: bold;
+        margin-top: 1em;
+      }
+      .header {
+        display: flex;
+      }
+      .body {
+        display: flex;
+        flex-direction: column;
+      }
+      #acronym-db-file {
+        margin-top: 1em;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="header"><img src="../icons/icon48.png"/> Acronym manager</h1>
+    <div class="body">
+      <label class="description">Choose a CSV file with acronyms to be loaded</label>
+      <input type="file" id="acronym-db-file" accept=".csv" />
+      <div class="status" id="status">ready</div>  
+    </div>
+    <script src="popup.js"></script>
+  </body>
+</html>
