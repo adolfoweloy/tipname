@@ -1,9 +1,12 @@
 function findAcronym(selection, callback) {
   chrome.storage.local.get("items", (result) => {
+    if (result && !result.items) {
+      alert("There is no acronym DB loaded");
+    }
     const items = result && result.items;
-    const itemFound = items.find((item) => item.acr === selection);
+    const itemFound = items[selection];
     if (itemFound) {
-      callback(itemFound.val);
+      callback(itemFound);
     } else {
       callback("Nothing found");
     }

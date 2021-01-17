@@ -15,7 +15,12 @@ function readImage(file) {
       .map((fields) => {
         return { acr: fields[0], val: fields[1] };
       });
-    chrome.storage.local.set({ items }, () => {
+
+    // create the acronym map
+    const itemsMap = {};
+    items.forEach((item) => (itemsMap[item.acr] = item.val));
+
+    chrome.storage.local.set({ items: itemsMap }, () => {
       divStatus.className = "ready";
       divStatus.innerText = ACRONYM_LOADED_STATUS;
     });
@@ -26,7 +31,7 @@ function readImage(file) {
 function loadState() {
   chrome.storage.local.get("items", (result) => {
     const items = result && result.items;
-    if (items.length > 0) {
+    if (items) {
       divStatus.className = "ready";
       divStatus.innerText = ACRONYM_LOADED_STATUS;
     }
