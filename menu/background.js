@@ -15,8 +15,8 @@ chrome.runtime.onInstalled.addListener(function () {
     id: "acronymLookup",
     title: "Lookup for acronym def",
     contexts: ["selection"],
-    onclick: () => {
-      findAcronym("IMHO", (value) => {
+    onclick: (info, tab) => {
+      findAcronym(info.selectionText, (value) => {
         alert(value);
       });
     },
