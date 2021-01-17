@@ -16,6 +16,7 @@ function readImage(file) {
         return { acr: fields[0], val: fields[1] };
       });
     chrome.storage.local.set({ items }, () => {
+      divStatus.className = "ready";
       divStatus.innerText = ACRONYM_LOADED_STATUS;
     });
   });
@@ -26,6 +27,7 @@ function loadState() {
   chrome.storage.local.get("items", (result) => {
     const items = result && result.items;
     if (items.length > 0) {
+      divStatus.className = "ready";
       divStatus.innerText = ACRONYM_LOADED_STATUS;
     }
   });

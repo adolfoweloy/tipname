@@ -9,10 +9,15 @@
         padding: 1em;
         background-color: antiquewhite;
       }
-      .status {
-        color: green;
+      .ready {
         font-weight: bold;
         margin-top: 1em;
+        color: green;
+      }
+      .no_acronym {
+        font-weight: bold;
+        margin-top: 1em;
+        color: red;
       }
       .header {
         display: flex;
@@ -31,7 +36,7 @@
     <div class="body">
       <label class="description">Choose a CSV file with acronyms to be loaded</label>
       <input type="file" id="acronym-db-file" accept=".csv" />
-      <div class="status" id="status">ready</div>  
+      <div class="no_acronym" id="status">No acronym loaded</div>  
     </div>
     <script src="popup.js"></script>
   </body>
