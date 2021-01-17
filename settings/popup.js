@@ -20,7 +20,7 @@ function readImage(file) {
     const itemsMap = {};
     items.forEach((item) => (itemsMap[item.acr] = item.val));
 
-    chrome.storage.local.set({ items: itemsMap }, () => {
+    chrome.storage.local.set({ tipname_items: itemsMap }, () => {
       divStatus.className = "ready";
       divStatus.innerText = ACRONYM_LOADED_STATUS;
     });
@@ -29,8 +29,8 @@ function readImage(file) {
 }
 
 function loadState() {
-  chrome.storage.local.get("items", (result) => {
-    const items = result && result.items;
+  chrome.storage.local.get("tipname_items", (result) => {
+    const items = result && result.tipname_items;
     if (items) {
       divStatus.className = "ready";
       divStatus.innerText = ACRONYM_LOADED_STATUS;
