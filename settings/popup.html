@@ -29,6 +29,12 @@
       #acronym-db-file {
         margin-top: 1em;
       }
+      .clean_db_unloaded {
+        display: none;
+      }
+      .clean_db_loaded {
+        display: inline;
+      }
     </style>
   </head>
   <body>
@@ -36,7 +42,8 @@
     <div class="body">
       <label class="description">Choose a CSV file with acronyms to be loaded</label>
       <input type="file" id="acronym-db-file" accept=".csv" />
-      <div class="no_acronym" id="status">No acronym loaded</div>  
+      <div class="no_acronym" id="status">No acronym loaded</div>
+      <a id="clean-db" href="/#" class="clean_db_unloaded">Remove acronym db</a>
     </div>
     <script src="popup.js"></script>
   </body>

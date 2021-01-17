@@ -1,5 +1,7 @@
 const inAcronymDBFile = document.getElementById("acronym-db-file");
 const divStatus = document.getElementById("status");
+const cleanDb = document.getElementById("clean-db");
+
 const ACRONYM_LOADED_STATUS = "Ready";
 
 function readImage(file) {
@@ -23,6 +25,7 @@ function readImage(file) {
     chrome.storage.local.set({ tipname_items: itemsMap }, () => {
       divStatus.className = "ready";
       divStatus.innerText = ACRONYM_LOADED_STATUS;
+      cleanDb.className = "clean_db_loaded";
     });
   });
   reader.readAsText(file);
@@ -34,6 +37,11 @@ function loadState() {
     if (items) {
       divStatus.className = "ready";
       divStatus.innerText = ACRONYM_LOADED_STATUS;
+      cleanDb.className = "clean_db_loaded";
+    } else {
+      divStatus.className = "no_acronym";
+      divStatus.innerText = "No acronym loaded";
+      cleanDb.className = "clean_db_unloaded";
     }
   });
 }
@@ -43,6 +51,13 @@ inAcronymDBFile.addEventListener("change", (event) => {
   if (files.length === 1) {
     readImage(files[0]);
   }
+});
+
+cleanDb.addEventListener("click", (event) => {
+  event.preventDefault();
+  chrome.storage.local.set({ tipname_items: null }, () => {
+    loadState();
+  });
 });
 
 loadState();
